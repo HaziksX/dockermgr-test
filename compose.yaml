@@ -3,6 +3,3 @@ services:
     image: grafana/grafana
     ports:
       - "3000:3000"
-    environment:
-      GF_SECURITY_ADMIN_PASSWORD: admin1
-      GF_DEFAULT_INSTANCE_NAME: test
