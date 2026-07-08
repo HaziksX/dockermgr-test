@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  app:
+    image: nginxdemos/hello:plain-text
+    deploy:
+      replicas: 2
+    networks:
+      - web
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    configs:
+      - source: nginx_conf
+        target: /etc/nginx/nginx.conf
+    deploy:
+      replicas: 1
+    networks:
+      - web
+
+networks:
+  web:
+    driver: overlay
+
+configs:
+  nginx_conf:
+    file: ./nginx.conf
